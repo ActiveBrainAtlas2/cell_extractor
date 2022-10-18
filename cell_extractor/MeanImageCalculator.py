@@ -1,10 +1,8 @@
-import sys
+import os ,sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'..')))
 import numpy as np
 import pickle as pkl
-from cell_extractor import compute_image_features 
-import cv2
-import pandas as pd
-from cell_extractor.CellDetectorBase import CellDetectorBase,get_sections_with_annotation_for_animali
+from cell_extractor.CellDetectorBase import CellDetectorBase
 import os
 class MeanImageCalculator(CellDetectorBase):
     def __init__(self,animal, *args, **kwargs):
@@ -28,4 +26,4 @@ class MeanImageCalculator(CellDetectorBase):
         return average
 
 if __name__ == '__main__':
-    calculator = MeanImageCalculator('DK52')
+    calculator = MeanImageCalculator('DK79')

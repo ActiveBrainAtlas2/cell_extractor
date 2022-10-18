@@ -31,7 +31,7 @@ class CellDetectorBase:
         self.MODELS = os.path.join(self.DATA_PATH,'models')
         self.FEATURE_PATH = os.path.join(self.ANIMAL_PATH,'features')
         self.DETECTION = os.path.join(self.ANIMAL_PATH,'detections')
-        self.AVERAGE_CELL_IMAGE_DIR = os.path.join(self.ANIMAL_PATH,'average_cell_image.pkl')
+        self.AVERAGE_CELL_IMAGE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),'..','lib','average_cell_image.pkl'))
         self.TILE_INFO_DIR = os.path.join(self.ANIMAL_PATH,'tile_info.csv')
         self.fluorescence_channel_output = os.path.join(self.ANIMAL_PATH,"fluorescence_channel")
         self.cell_body_channel_output = os.path.join(self.ANIMAL_PATH,"cell_body_channel")
@@ -94,11 +94,10 @@ class CellDetectorBase:
             tile_information = pd.read_csv(self.TILE_INFO_DIR)
             tile_information.tile_origin = tile_information.tile_origin.apply(eval)
             self.tile_origins=tile_information.tile_origin
-            self.tile_height = tile_information.height
-            self.tile_width= tile_information.width
+            self.tile_height = np.unique(tile_information.height)[0]
+            self.tile_width= np.unique(tile_information.width)[0]
 
     def get_tile_origin(self,tilei):
-        self.get_tile_origins()
         return np.array(self.tile_origins[tilei],dtype=np.int32)
     
     def get_all_sections(self):

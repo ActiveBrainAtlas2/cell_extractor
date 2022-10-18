@@ -80,8 +80,8 @@ class ExampleFinder(CellDetectorBase):
             Examples.append(example)
         return Examples
 
-    def get_tilei(self,tilei,channel = 3):
-        folder = getattr(self, f'CH{channel}_SECTION_DIR')
+    def get_tilei(self,tilei,channel='fluorescence'):
+        folder = getattr(self, f'{channel}_channel_output_SECTION_DIR')
         file = f'{self.section:03}tile-{tilei}.tif'
         infile = os.path.join(folder, file)
         img = np.float32(cv2.imread(infile, -1))
@@ -109,8 +109,8 @@ class ExampleFinder(CellDetectorBase):
         self.segment_location = np.flip(self.segment_location,1)
     
     def load_and_preprocess_image(self,tile):
-        self.fluorescence_channel_output_image = self.get_tilei(tile,channel = 3)
-        self.cell_body_channel_output_image = self.get_tilei(tile,channel = 1)
+        self.fluorescence_channel_output_image = self.get_tilei(tile,channel = 'fluorescence')
+        self.cell_body_channel_output_image = self.get_tilei(tile,channel = 'cell_body')
         self.difference_ch3 = self.subtract_blurred_image(self.fluorescence_channel_output_image)
         self.difference_ch1 = self.subtract_blurred_image(self.cell_body_channel_output_image)
 

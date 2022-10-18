@@ -1,4 +1,6 @@
-from dataclasses import replace
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../..'))
 from cell_extractor.ExampleFinder import ExampleFinder 
 
 def calculate_one_section(animal,section,disk,segmentation_threshold,replace):
@@ -7,7 +9,7 @@ def calculate_one_section(animal,section,disk,segmentation_threshold,replace):
     extractor.save_examples()
 
 if __name__ =='__main__':
-    animal = 'DK55'
+    animal = 'DK79'
     section = 180
     disk = '/net/birdstore/Active_Atlas_Data'
     threshold=2000
