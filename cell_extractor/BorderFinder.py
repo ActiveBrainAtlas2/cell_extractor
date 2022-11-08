@@ -10,6 +10,7 @@ import pickle
 import pandas as pd
 
 class BorderFinder(CellDetectorBase):
+    """class for finding the border of tissues so detections not landing on the tissue can be excluded """
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.BORDER_INFO = os.path.join(self.ANIMAL_PATH,'border_info.pkl')

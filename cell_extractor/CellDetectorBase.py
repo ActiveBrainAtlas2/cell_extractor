@@ -11,6 +11,19 @@ import concurrent.futures
 class CellDetectorBase:
     def __init__(self,animal='DK55',section = 0,\
         disk = '/net/birdstore/Active_Atlas_Data/',round = 1,segmentation_threshold=2000,replace=False):
+        """class for handling file storage and loading involved in the cell detection process
+
+        :param animal: ID of animal being processed, defaults to 'DK55'
+        :type animal: str, optional
+        :param section: section number being processed, defaults to 0
+        :type section: int, optional
+        :param round: Detector version being used, defaults to 1
+        :type round: int, optional
+        :param segmentation_threshold: threshold used for detecting conntected segments, defaults to 2000
+        :type segmentation_threshold: int, optional
+        :param replace: regenerate files or skip processed sections, defaults to False
+        :type replace: bool, optional
+        """
         self.animal = animal
         self.replace = replace
         self.disk = disk
@@ -25,6 +38,8 @@ class CellDetectorBase:
         self.get_tile_and_image_dimensions()
     
     def set_folder_paths(self):
+        """generates all the file path involved in cell detection
+        """
         self.DATA_PATH = f"/{self.disk}/cell_segmentation/"
         self.ANIMAL_PATH = os.path.join(self.DATA_PATH,self.animal)
         self.DETECTOR = os.path.join(self.ANIMAL_PATH,'detectors')
@@ -43,13 +58,21 @@ class CellDetectorBase:
         self.DETECTION_RESULT_DIR = os.path.join(self.DETECTION,f'detections_{self.animal}.{str(self.round)}_threshold_{self.segmentation_threshold}.csv')
         self.ALL_FEATURES = os.path.join(self.FEATURE_PATH,f'all_features_threshold_{self.segmentation_threshold}.csv')
         self.MODEL_PATH = os.path.join(self.MODELS,f'models_from_qc_round_{self.round}_threshold_{self.segmentation_threshold}.pkl')
+
     def check_path_exists(self):
+        """Makes the path if it does not exit
+        """
         check_paths = [self.ANIMAL_PATH,self.FEATURE_PATH,self.fluorescence_channel_output,self.cell_body_channel_output
         ,self.DETECTION,self.DETECTOR,self.MODELS]
         for path in check_paths:
             os.makedirs(path,exist_ok = True)
     
     def get_tile_information(self):
+        """returns the tile dimension in pixels
+
+        :return: dictionary of tile dimensions
+        :rtype: _type_
+        """
         self.get_tile_origins()
         ntiles = len(self.tile_origins)
         tile_information = pd.DataFrame(columns = ['id','tile_origin','ncol','nrow','width','height'])
@@ -65,6 +88,11 @@ class CellDetectorBase:
         return tile_information
 
     def get_detection_by_category(self):
+        """Get sure unsure and no detections
+
+        :return: _description_
+        :rtype: dfs
+        """
         detections = self.load_detections()
         sures = detections[detections.predictions==2]
         unsures = detections[detections.predictions==0]
@@ -72,6 +100,8 @@ class CellDetectorBase:
         return sures,unsures,not_cell
     
     def save_tile_information(self):
+        """generate tile information from the first image in the input directory and stores it for later use
+        """
         tile_information = self.get_tile_information()
         try:
             tile_information.to_csv(self.TILE_INFO_DIR,index = False)
@@ -79,6 +109,8 @@ class CellDetectorBase:
             print(e)
     
     def check_tile_information(self):
+        """Check that the image size matches information stored previously
+        """
         if os.path.exists(self.TILE_INFO_DIR):
             tile_information = pd.read_csv(self.TILE_INFO_DIR)
             tile_information.tile_origin = tile_information.tile_origin.apply(eval)
@@ -87,9 +119,16 @@ class CellDetectorBase:
             self.save_tile_information()
     
     def list_detectors(self):
+        """list available detectors
+
+        :return: list of detectors available
+        :rtype: list
+        """
         return os.listdir(self.DETECTOR)
 
     def get_tile_and_image_dimensions(self):
+        """parse the image dimension from the tile_information dictionary
+        """
         if os.path.isfile(self.TILE_INFO_DIR):
             tile_information = pd.read_csv(self.TILE_INFO_DIR)
             tile_information.tile_origin = tile_information.tile_origin.apply(eval)
@@ -98,12 +137,31 @@ class CellDetectorBase:
             self.tile_width= np.unique(tile_information.width)[0]
 
     def get_tile_origin(self,tilei):
+        """gets the origin in pixels of a specfic tile
+
+        :param tilei: tile number
+        :type tilei: int
+        :return: x and y of tile origin
+        :rtype: np array
+        """
         return np.array(self.tile_origins[tilei],dtype=np.int32)
     
     def get_all_sections(self):
+        """get a list of all sections
+
+        :return: list of folder names to be processed(each folder contains result from one image section)
+        :rtype: list
+        """
         return os.listdir(self.fluorescence_channel_output)
     
     def get_sections_with_string(self,search_string):
+        """get section folders that contain files with a specfic string pattern
+
+        :param search_string: string pattern
+        :type search_string: str
+        :return: list of section folders
+        :rtype: list
+        """
         sections = self.get_all_sections()
         sections_with_string = []
         for sectioni in sections:
@@ -112,6 +170,13 @@ class CellDetectorBase:
         return sorted(sections_with_string)
 
     def get_sections_without_string(self,search_string):
+        """get section folders that do not have any file matching string pattern
+
+        :param search_string: string pattern
+        :type search_string: str
+        :return: list of section folders
+        :rtype: list
+        """
         sections = self.get_all_sections()
         sections_with_string = []
         for sectioni in sections:
@@ -120,30 +185,72 @@ class CellDetectorBase:
         return sorted(sections_with_string)
 
     def get_sections_with_csv(self):
+        """get list of sections with a .csv file. the .csv file contains information about manunal label(depricated)
+
+        :return: _description_
+        :rtype: _type_
+        """
         return self.get_sections_with_string('*.csv')
     
     def get_sections_without_csv(self):
+        """get sections folders without a .csv file(depricated)
+
+        :return: _description_
+        :rtype: _type_
+        """
         return self.get_sections_without_string('*.csv')
 
     def get_sections_with_example(self,threshold=2000):
+        """get sections that have finished the example extraction step
+
+        :param threshold: image segmentation threshold, defaults to 2000
+        :type threshold: int, optional
+        :return: list of sections that finished example extraction
+        :rtype: _type_
+        """
         return self.get_sections_with_string(f'extracted_cells*{threshold}*')
 
     def get_sections_without_example(self,threshold=2000):
+        """Get sections that have not been through example extraction
+
+        :param threshold: image segmentation threshold, defaults to 2000
+        :type threshold: int, optional
+        :return: list of section folders
+        :rtype: _type_
+        """
         return self.get_sections_without_string(f'extracted_cells*{threshold}*')
     
     def get_sections_with_features(self,threshold=2000):
+        """get sections that have finished feature extraction step
+
+        :param threshold: image segmentation threshold, defaults to 2000
+        :type threshold: int, optional
+        :return: _description_
+        :rtype: _type_
+        """
         return self.get_sections_with_string(f'puntas_*{threshold}*')
 
     def get_sections_without_features(self,threshold=2000):
+        """get sections that do not have feature extracted
+
+        :param threshold: image segmentation threshold, defaults to 2000
+        :type threshold: int, optional
+        :return: _description_
+        :rtype: _type_
+        """
         return self.get_sections_without_string(f'puntas_*{threshold}*')
 
     def get_example_save_path(self):
+        """generate save path for example extraction step result"""
         return self.fluorescence_channel_output_SECTION_DIR+f'/extracted_cells_{self.section}_threshold_{self.segmentation_threshold}.pkl'
     
     def get_feature_save_path(self):
+        """generate save path for feature extraction step result"""
         return self.fluorescence_channel_output_SECTION_DIR+f'/puntas_{self.section}_threshold_{self.segmentation_threshold}.csv'
     
     def load_examples(self):
+        """load extracted examples for one section
+        """
         save_path = self.get_example_save_path()
         try:
             with open(save_path,'br') as pkl_file:
@@ -152,6 +259,13 @@ class CellDetectorBase:
             print(e)
         
     def load_all_examples_in_brain(self,label = 1):
+        """load all examples extracted from one brain
+
+        :param label: include manual label(depricated), defaults to 1
+        :type label: int, optional
+        :return: _description_
+        :rtype: _type_
+        """
         sections = self.get_sections_with_csv()
         examples = []
         for sectioni in sections:
@@ -162,6 +276,7 @@ class CellDetectorBase:
         return examples
     
     def load_features(self):
+        """load features for one sections"""
         path=self.get_feature_save_path()
         try:
             self.features = pd.read_csv(path)
@@ -169,6 +284,8 @@ class CellDetectorBase:
             print(e)
     
     def save_features(self):
+        """save features for one section
+        """
         df=pd.DataFrame()
         i = 0
         for featurei in self.features:
@@ -183,6 +300,8 @@ class CellDetectorBase:
             print(e)
     
     def save_examples(self):
+        """save examples for one section
+        """
         try:
             with open(self.get_example_save_path(),'wb') as pkl_file:
                 pkl.dump(self.Examples,pkl_file)
@@ -190,6 +309,15 @@ class CellDetectorBase:
             print(e)
 
     def get_manual_annotation_in_tilei(self,annotations,tilei):
+        """get manual annotation for tilei (depricated)
+
+        :param annotations: _description_
+        :type annotations: _type_
+        :param tilei: _description_
+        :type tilei: _type_
+        :return: _description_
+        :rtype: _type_
+        """
         tile_origin= self.get_tile_origin(tilei)
         manual_labels_in_tile=[]
         n_manual_label = 0
@@ -208,6 +336,11 @@ class CellDetectorBase:
         return manual_labels_in_tile,n_manual_label
     
     def get_combined_features_of_train_sections(self):
+        """get feature of all examples extracted from one brain without manual annotation (depricated)
+
+        :return: _description_
+        :rtype: _type_
+        """
         dirs=glob(self.fluorescence_channel_output + f'/*/{self.animal}*.csv')
         dirs=['/'.join(d.split('/')[:-1]) for d in dirs]
         df_list=[]
@@ -223,17 +356,28 @@ class CellDetectorBase:
         return full_df
     
     def get_combined_features(self):
+        """get feature of all sections extracted from one brain
+
+        :return: _description_
+        :rtype: _type_
+        """
         if not os.path.exists(self.ALL_FEATURES):
             self.create_combined_features()
         return pd.read_csv(self.ALL_FEATURES,index_col=False)
 
     def get_combined_features_for_detection(self):
+        """get features for all sections without the coordinate of sample location in the section"
+
+        :return: _description_
+        :rtype: _type_
+        """
         all_features = self.get_combined_features()
         drops = ['animal', 'section', 'index', 'row', 'col'] 
         all_features=all_features.drop(drops,axis=1)
         return all_features
     
     def create_combined_features(self):
+        """combines features from different sections"""
         print('creating combined features')
         files=glob(self.fluorescence_channel_output+f'/*/punta*{self.segmentation_threshold}.csv')  
         df_list=[]
@@ -247,24 +391,30 @@ class CellDetectorBase:
         full_df.to_csv(self.ALL_FEATURES,index=False)
 
     def get_qualifications(self):
+        """get manual qc result"""
         return pkl.load(open(self.QUALIFICATIONS,'rb'))
     
     def save_detector(self,detector):
+        """save the detector being trained"""
         pkl.dump(detector,open(self.DETECTOR_PATH,'wb'))
     
     def load_detector(self):
+        """load the detector specified"""
         models = self.load_models()
         detector = Detector(models,Predictor())
         return detector
     
     def save_custom_features(self,features,file_name):
+        """save custom feature inputs"""
         path = os.path.join(self.FEATURE_PATH,f'{file_name}.pkl')
         pkl.dump(features,open(path,'wb'))
     
     def list_available_features(self):
+        """list availble features for training"""
         return os.listdir(self.FEATURE_PATH)
     
     def load_features(self,file_name):
+        """load a specific feature set for training"""
         path = os.path.join(self.FEATURE_PATH,f'{file_name}.pkl')
         if os.path.exists(path):
             features = pkl.load(open(path,'rb'))
@@ -273,6 +423,7 @@ class CellDetectorBase:
         return features
     
     def load_average_cell_image(self):
+        """load the average cell image for averaging"""
         if os.path.exists(self.AVERAGE_CELL_IMAGE_DIR):
             try:
                 average_image = pkl.load(open(self.AVERAGE_CELL_IMAGE_DIR,'rb'))
@@ -282,12 +433,27 @@ class CellDetectorBase:
             self.average_image_ch3 = average_image['CH3']
     
     def load_detections(self):
+        """load detection results
+
+        :return: df containing detection results
+        :rtype: df
+        """
         return pd.read_csv(self.DETECTION_RESULT_DIR)
     
     def has_detection(self):
+        """check if detections exist
+
+        :return: boolean
+        :rtype: boolean
+        """
         return os.path.exists(self.DETECTION_RESULT_DIR)
     
     def get_available_animals(self):
+        """get list of available animals
+
+        :return: _description_
+        :rtype: _type_
+        """
         path = self.DATA_PATH
         dirs = os.listdir(path)
         dirs = [i for i in dirs if os.path.isdir(path+i)]
@@ -308,6 +474,7 @@ class CellDetectorBase:
         ...
 
     def save_models(self,models):
+        """save xgboost model"""
         try:
             with open(self.MODEL_PATH,'wb') as pkl_file:
                 pkl.dump(models,pkl_file)
@@ -315,6 +482,11 @@ class CellDetectorBase:
             print(e)
     
     def load_models(self):
+        """load xgboost model
+
+        :return: _description_
+        :rtype: _type_
+        """
         try:
             with open(self.MODEL_PATH,'rb') as pkl_file:
                 models = pkl.load(pkl_file)
@@ -357,6 +529,17 @@ def list_available_animals(disk = '/net/birdstore/Active_Atlas_Data/',has_exampl
     return animals
 
 def parallel_process_all_sections(animal,processing_function,*args,njobs = 10,sections=None,**kwargs):
+    """process all sections for one brain in parallel
+
+    :param animal: animal ID
+    :type animal: _type_
+    :param processing_function: function containg detection step
+    :type processing_function: _type_
+    :param njobs: n parallel, defaults to 10
+    :type njobs: int, optional
+    :param sections: list of sections to annalyze, defaults to None
+    :type sections: _type_, optional
+    """
     if sections is None:
         sections = get_all_sections_for_animali(animal)
     with concurrent.futures.ProcessPoolExecutor(max_workers=njobs) as executor:

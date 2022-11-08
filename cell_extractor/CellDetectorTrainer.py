@@ -10,106 +10,25 @@ import numpy as np
 import xgboost as xgb
 import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.metrics import roc_curve
-import pickle as pk
-from collections import Counter
 from cell_extractor.CellDetectorBase import CellDetectorBase
 print(xgb.__version__)
-from glob import glob
 from cell_extractor.retraining.lib.logger  import logger
 import pandas as pd
 from cell_extractor.Predictor import GreedyPredictor
-from cell_extractor.CellAnnotationUtilities import CellAnnotationUtilities
-import os
 from cell_extractor.Detector import Detector   
 
-class DK55DataLoader(CellAnnotationUtilities):
-    def load_original_training_features(self):
-        dirs=glob('/net/birdstore/Active_Atlas_Data/cell_segmentation/DK55/CH3/*/DK55*.csv')  
-        dirs=['/'.join(d.split('/')[:-1]) for d in dirs]
-        df_list=[]
-        for dir in dirs:
-            filename=glob(dir + '/puntas*.csv')[0]
-            df=pd.read_csv(filename)
-            df_list.append(df)
-        len(df_list)
-        full_df=pd.concat(df_list)
-        full_df.index=list(range(full_df.shape[0]))
-        oog=pd.DataFrame(full_df)
-        drops = ['animal', 'section', 'index', 'row', 'col'] 
-        oog=oog.drop(drops,axis=1)
-        return oog
-    
-    def create_positive_labels(self):
-        combined_features = self.get_combined_features()
-        test_counts,train_sections = pk.load(open(self.last_round.QUALIFICATIONS,'rb'))
-        all_segment = np.array([combined_features.col,combined_features.row,combined_features.section]).T
-
-        cells = test_counts['computer sure, human unmarked']
-        cells = np.array([[ci[1]['x'],ci[1]['y'],ci[1]['section']] for ci in cells])
-        cells_index = self.find_cloest_neighbor_among_points(all_segment,cells)
-
-        original = train_sections['original training set after mind change']
-        original = np.array([[ci[1]['x'],ci[1]['y'],ci[1]['section']] for ci in original])
-        original_index = self.find_cloest_neighbor_among_points(all_segment,original)
-
-        qc_annotation_input_path = os.path.join(os.path.dirname(__file__),'retraining')
-        neg = qc_annotation_input_path+'/DK55_premotor_manual_negative_round1_2021-12-09.csv'
-        pos = qc_annotation_input_path+'/DK55_premotor_manual_positive_round1_2021-12-09.csv'
-        neg = pd.read_csv(neg,header=None).to_numpy()
-        pos = pd.read_csv(pos,header=None).to_numpy()
-        positive = self.find_cloest_neighbor_among_points(all_segment,pos)
-        negative = self.find_cloest_neighbor_among_points(all_segment,neg)
-        dirs=glob('/net/birdstore/Active_Atlas_Data/cell_segmentation/DK55/CH3/*/DK55*.csv') 
-        manual_sections = [int(i.split('/')[-2]) for i in dirs]
-        labels = np.zeros(len(combined_features))
-        positive_index = cells_index+original_index+positive
-        for i in positive_index:
-            labels[i] = 1
-        include = [labels[i]==1 or i in negative or all_segment[i,2] in manual_sections for i in range(len(combined_features))]
-        pk.dump((labels,include),open(self.POSITIVE_LABELS,'wb'))    
-
-    def get_positive_labels(self):
-        if not os.path.exists(self.POSITIVE_LABELS):
-            self.create_positive_labels()
-        return pk.load(open(self.POSITIVE_LABELS,'rb'))
-    
-    def load_new_features_with_coordinate(self):
-        labels,include = self.get_positive_labels()
-        combined_features = self.get_combined_features()
-        combined_features['label'] = labels
-        return combined_features[include]
-
-    def load_new_features(self):
-        df_in_section = self.load_new_features_with_coordinate()
-        drops = ['animal', 'section', 'index', 'row', 'col'] 
-        df_in_section=df_in_section.drop(drops,axis=1)
-        return df_in_section
-
-    def load_refined_original_feature(self):
-        dir = '/net/birdstore/Active_Atlas_Data/cell_segmentation/DK55/all_features.csv'
-        df = pd.read_csv(dir,index_col = 0)
-        test_counts,train_sections = pk.load(open(self.QUALIFICATIONS,'rb'))
-        all_segment = np.array([df.col,df.row,df.section]).T
-
-        original = train_sections['original training set after mind change']
-        original = np.array([[ci[1]['x'],ci[1]['y'],ci[1]['section']] for ci in original])
-        original_index = self.find_cloest_neighbor_among_points(all_segment,original)
-
-        dirs=glob('/net/birdstore/Active_Atlas_Data/cell_segmentation/DK55/CH3/*/DK55*.csv') 
-        manual_sections = [int(i.split('/')[-2]) for i in dirs]
-        labels = np.zeros(len(df))
-        for i in original_index:
-            labels[i] = 1
-        df['label'] = labels
-        drops = ['animal', 'section', 'index', 'row', 'col'] 
-        df=df.drop(drops,axis=1)
-        include = [labels[i]==1 or all_segment[i,2] in manual_sections for i in range(len(df))]
-        df_in_section = df[include]
-        return df_in_section
-
 class CellDetectorTrainer(Detector,CellDetectorBase):
+    """class for training detectors"""
     def __init__(self,animal,round =2,segmentation_threshold=2000):
+        """specifies detector to train
+
+        :param animal: animal ID
+        :type animal: str
+        :param round: detection version, defaults to 2
+        :type round: int, optional
+        :param segmentation_threshold: threshold used for image segmentation, defaults to 2000
+        :type segmentation_threshold: int, optional
+        """
         CellDetectorBase.__init__(self,animal,round = round,segmentation_threshold=segmentation_threshold)
         self.last_round = CellDetectorBase(animal,round = round-1,segmentation_threshold=segmentation_threshold)
         self.init_parameter()
@@ -127,6 +46,15 @@ class CellDetectorTrainer(Detector,CellDetectorBase):
         return s
 
     def get_train_and_test(self,df,frac=0.5):
+        """split train and test set
+
+        :param df: _description_
+        :type df: _type_
+        :param frac: _description_, defaults to 0.5
+        :type frac: float, optional
+        :return: _description_
+        :rtype: _type_
+        """
         train = pd.DataFrame(df.sample(frac=frac))
         test = df.drop(train.index,axis=0)
         print(train.shape,test.shape,train.index.shape,df.shape)
@@ -136,6 +64,8 @@ class CellDetectorTrainer(Detector,CellDetectorBase):
         return train,test,all
 
     def init_parameter(self):
+        """initialize training parameter
+        """
         self.default_param = {}
         shrinkage_parameter = 0.3
         self.default_param['eta'] =shrinkage_parameter
@@ -144,6 +74,19 @@ class CellDetectorTrainer(Detector,CellDetectorBase):
         print(self.default_param)
 
     def train_classifier(self,features,niter,depth=None,models = None,**kwrds):
+        """trains the classifier using given feature
+
+        :param features: data frame containing detected features used for training
+        :type features: _type_
+        :param niter: number of iteration to train
+        :type niter: _type_
+        :param depth: depths of boosted trees, defaults to None
+        :type depth: _type_, optional
+        :param models: if given, retrain from a previous xgboost model, defaults to None
+        :type models: _type_, optional
+        :return: list of 30 xgboost models
+        :rtype: _type_
+        """
         param = self.default_param
         if depth is not None:
             param['max_depth'] = depth
@@ -169,10 +112,30 @@ class CellDetectorTrainer(Detector,CellDetectorBase):
         return bst_list
     
     def test_xgboost(self,df,depths = [1,3,5],num_round = 1000,**kwrds):
+        """generate test diagnostic for a range of depth depth and a given max iterations.  Generated plot for comparing comparison through iterations for test and train dataset
+
+        :param df: feature data frame
+        :type df: _type_
+        :param depths: depth of xgboost trees, defaults to [1,3,5]
+        :type depths: list, optional
+        :param num_round: max number of round to train, defaults to 1000
+        :type num_round: int, optional
+        """
         for depthi in depths:
             self.test_xgboost_at_depthi(df,depth = depthi,num_round=num_round,**kwrds)
 
     def test_xgboost_at_depthi(self,features,depth=1,num_round=1000,**kwrds):
+        """generate diagnostics for one depths of boosted trees
+
+        :param features: _description_
+        :type features: _type_
+        :param depth: _description_, defaults to 1
+        :type depth: int, optional
+        :param num_round: _description_, defaults to 1000
+        :type num_round: int, optional
+        :return: _description_
+        :rtype: _type_
+        """
         param = self.default_param
         param['max_depth']= depth
         train,test,_=self.get_train_and_test(features)
@@ -191,6 +154,11 @@ class CellDetectorTrainer(Detector,CellDetectorBase):
         return bst,Logger
     
     def save_predictions(self,features):
+        """save prediction results as data frame
+
+        :param features: _description_
+        :type features: _type_
+        """
         detection_df = self.load_new_features_with_coordinate()
         scores,labels,_mean,_std = self.calculate_scores(features)
         predictions=self.get_prediction(_mean,_std)
@@ -201,25 +169,18 @@ class CellDetectorTrainer(Detector,CellDetectorBase):
         detection_df = detection_df[['animal', 'section', 'row', 'col','label', 'mean_score','std_score', 'predictions']]
         detection_df.to_csv(self.DETECTION_RESULT_DIR,index=False)
     
-    def add_detection_to_database(self):
-        detection_df = trainer.load_detections()
-        points = np.array([detection_df.col,detection_df.row,detection_df.section]).T
-        for pointi in points:
-            pointi = pointi*np.array([0.325,0.325,20])
-            trainer.sqlController.add_layer_data_row(trainer.animal,34,1,pointi,52,f'detected_soma_round_{self.round}')
-    
     def save_detector(self):
+        """save the current detector"""
         detector = Detector(self.model,self.predictor)
         return super().save_detector(detector)
     
     def load_detector(self):
+        """load the specified detector
+        """
         detector = super().load_detector()
         self.model = detector.model
         self.predictor = detector.predictor
 
-class CellDetectorTrainerDK55(CellDetectorTrainer,DK55DataLoader):
-    def __init__(self,*args,**kwrds):
-        CellDetectorTrainer.__init__(self,*args,**kwrds)
 
 if __name__=='__main__':
     trainer = CellDetectorTrainer('DK55',round = 2)

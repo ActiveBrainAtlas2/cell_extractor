@@ -8,6 +8,13 @@ class FeatureFinder(CellDetectorBase):
     """class to calculate feature vector for each extracted image pair (CH1, CH3)
     """
     def __init__(self,animal,section, *args, **kwargs):
+        """_summary_
+
+        :param animal: animal ID
+        :type animal: str
+        :param section: section number
+        :type section: int
+        """
         super().__init__(animal,section, *args, **kwargs)
         self.features = []
         print('DATA_DIR=%s'%(self.fluorescence_channel_output))
@@ -15,12 +22,18 @@ class FeatureFinder(CellDetectorBase):
         self.load_average_cell_image()
     
     def copy_information_from_examples(self,example):
+        """copy information already calculated in example extraction step
+
+        :param example: examples
+        :type example: _type_
+        """
         for key in ['animal','section','index','label','area','height','width']:
             self.featurei[key] = example[key]
         self.featurei['row'] = example['row']+example['origin'][0]
         self.featurei['col'] = example['col']+example['origin'][1]
 
-    def calculate_correlation_and_energy(self,example,channel = 3):  # calculate correlation and energy for channel 1 and 3
+    def calculate_correlation_and_energy(self,example,channel = 3):  
+        """ calculate correlation and energy for channel 1 and 3"""
         image = example[f'image_CH{channel}']
         average_image = getattr(self, f'average_image_ch{channel}')
         corr,energy = compute_image_features.calc_img_features(image,average_image)
@@ -28,6 +41,7 @@ class FeatureFinder(CellDetectorBase):
         self.featurei[f'energy_CH{channel}'] = energy
     
     def features_using_center_connectd_components(self,example):   
+        """calculated designed features for detection input"""
         def mask_mean(mask,image):
             mean_in=np.mean(image[mask==1])
             mean_all=np.mean(image.flatten())
@@ -87,9 +101,11 @@ class FeatureFinder(CellDetectorBase):
                     self.features.append(self.featurei)
 
 def create_features_for_all_sections(animal,*args,njobs = 10,**kwargs):
+    """extract feature for all sections in parallel"""
     parallel_process_all_sections(animal,create_features_for_one_section,*args,njobs = njobs,**kwargs)
 
 def create_features_for_one_section(animal,section,*args,**kwargs):
+    """extract feature for one section"""
     finder = FeatureFinder(animal,section = section,*args,**kwargs)
     if not os.path.exists(finder.get_feature_save_path()):
         finder.calculate_features()

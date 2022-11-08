@@ -7,6 +7,11 @@ from cell_extractor.CellDetectorBase import CellDetectorBase
 from cell_extractor.AnnotationProximityTool import AnnotationProximityTool
 import os
 class CellDetector(CellDetectorBase):
+    """class for detecting cells after example and feature extraction   
+
+    :param CellDetectorBase: base class for file IO
+    :type CellDetectorBase: _type_
+    """
 
     def __init__(self,animal,round = 2, *args, **kwargs):
         super().__init__(animal,round=round,*args, **kwargs)
@@ -16,6 +21,11 @@ class CellDetector(CellDetectorBase):
         print('version of xgboost is:',xgb.__version__,'should be at least 1.5.0')
 
     def get_detection_results(self):
+        """calculates the detection results from features of all sections
+
+        :return: data frame containg detection result predictions==2 is sure,predictions==0 is unsure and predictions==-2 is no detection
+        :rtype: _type_
+        """
         features = self.get_combined_features_for_detection()
         scores,labels,_mean,_std = self.detector.calculate_scores(features)
         predictions=self.detector.get_prediction(_mean,_std)
@@ -31,6 +41,7 @@ class CellDetector(CellDetectorBase):
         detection_df.to_csv(self.DETECTION_RESULT_DIR,index=False)
 
 class MultiThresholdDetector(CellDetector,AnnotationProximityTool):
+    """detect cell using multiple segmentation threshold (depricated)"""
     def __init__(self,animal,round,thresholds = [2000,2100,2200,2300,2700]):
         super().__init__(animal = animal,round = round)
         self.thresholds=thresholds

@@ -18,6 +18,7 @@ def sobel(img):
     return sobel_x, sobel_y
 
 def trim_array_to_size(array,size0,size2):
+    """trims an array to size"""
     if(array.shape[0]>size0):
         size_difference=int((array.shape[0]-size0)/2)
         array=array[size_difference:size_difference+size0,:]
@@ -27,6 +28,7 @@ def trim_array_to_size(array,size0,size2):
     return array
 
 def equalize_array_size_by_trimming(array1,array2):
+    """makes array1 and array 2 the same size"""
     size0=min(array1.shape[0],array2.shape[0])
     size1=min(array1.shape[1],array2.shape[1])
     array1=trim_array_to_size(array1,size0,size1)

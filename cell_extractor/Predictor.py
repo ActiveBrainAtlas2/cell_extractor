@@ -2,10 +2,12 @@ from numpy import *
 from pylab import plot
 
 class Predictor:
+    """class used to assign cells to sure/unsure/no detection"""
     def __init__(self,std=1.5):
         self.std = std
     
     def decision(self,mean,std):
+        """decision function, 2=sure,0=unsure,-2=no detection"""
         if mean <= -self.std:
             return -2
         elif mean>-self.std and mean <= self.std:
@@ -14,6 +16,7 @@ class Predictor:
             return 2
 
 class BetterPredictor:
+    """a simpler predictors that sets detections with a mean score with a certain mutiple of std (of all 30 models) from zero as unsures"""
     def __init__(self,std=1.5):
         self.std = std
     
@@ -26,6 +29,7 @@ class BetterPredictor:
             return 2
 
 class GreedyPredictor:
+    """a predictor that defines a dimond region of unsures using custom boundary points"""
     def __init__(self,boundary_points=[[0,3],[3,4.5],[1,6],[-3,4],[-10,7],[10,7]]):
         self.set_boundary_points(boundary_points)
 

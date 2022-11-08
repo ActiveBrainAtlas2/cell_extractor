@@ -1,5 +1,6 @@
 import numpy as np
 class CellAnnotationUtilities:
+    """utility class for finding cell markings that are close to each other(group of closely located cells)"""
     def find_cloest_neighbor_among_points(self,all_points,search_array,max_distance = 20,verbose_unequal = False,verbose_skipping = True):
         index_array = []
         i = 0
