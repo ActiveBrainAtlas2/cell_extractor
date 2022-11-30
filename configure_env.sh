@@ -1,9 +1,5 @@
-# Setting environmental variables
-
-# Directory where you git clone this project
-export PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" 
 # Directory to create virtual environment
-export venv=~/Github/venv/        
+export venv=~/Github/venv/  # CHANGE TO YOUR DIRECTORY    
 
 ##################################################
 
@@ -28,9 +24,8 @@ if [ ! -d $venv_dir ]; then
     echo ""
     echo -e "${green}[virtualenv] Installing Python packages${NC}"
     pip3 install -r $PROJECT_DIR/requirements.txt
-else
+fi
+
 echo ""
 echo -e "${green}Activating the virtualenv environment${NC}"
 source $venv_dir/bin/activate
-fi
-

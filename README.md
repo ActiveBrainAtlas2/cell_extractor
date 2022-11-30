@@ -50,11 +50,12 @@ To get a local copy up and running, follow these simple example steps.
 
 ### Prerequisites
 
-Please ensure you have any tool to create virtual environments. Our environment setting uses `virtualenv`.
+1. Please ensure you have any tool to create virtual environments. Our environment setting uses `virtualenv`.
 * virtualenv
   ```bash
-  pip3 install virtualenv
+  sudo apt install virtualenv
   ```
+2. `ImageMagick` is required to convert images. The installment guide is [here](https://imagemagick.org/script/download.php).
 
 ### Installation
 
@@ -71,8 +72,13 @@ Please ensure you have any tool to create virtual environments. Our environment 
 
 3. When the configuration file is set, run the following command to activate the environment variables and the virtual environment. Essential packages listed in `requirements.txt` would be installed meanwhile.
     ```bash
+    source variables_env.sh
     source configure_env.sh
     ```
+You can also set up the virtual environment by your familiar way. Install the essential packages by running the following command:
+```bash
+pip install -r $PROJECT_DIR/requirements.txt
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,7 +100,7 @@ There are some example images in [data_for_test](https://github.com/ActiveBrainA
 The full resolution images are too big to work with, therefore we break them down to smaller chunks for processing with the script [generate_tif_tiles.py](https://github.com/ActiveBrainAtlas2/cell_extractor/blob/main/cell_extractor/scripts/generate_tif_tiles.py).
 
 ```bash
-python $PROJECT_DIR/scripts/generate_tif_files.py --animal XXX --fluorescence_image data_for_test/fluorescence_image --nissel_stain_image data_for_test/nissel_stain_image --disk output_directory
+python $SCRIPT_DIR/generate_tif_tiles.py --animal XXX --fluorescence_image data_for_test/fluorescence_image --nissel_stain_image data_for_test/nissel_stain_image --disk output_directory
 ```
 ```
 optional arguments:
@@ -124,7 +130,7 @@ The cell examples are patches of images from both fluorescent channel and nissel
 
 Generate examples by running the following:
 ```bash
-python $PROJECT_DIR/scripts/parallel_create_examples.py --animal XXX --disk output_directory --njobs 7
+python $SCRIPT_DIR/parallel_create_examples.py --animal XXX --disk output_directory --njobs 7
 ```
 ```
 optional arguments:
@@ -139,7 +145,7 @@ optional arguments:
 A set of image features are calculated from each cell candidate.  The features are used as the input to the machine learning algorithm.
 
 ```bash
-python $PROJECT_DIR/scripts/parallel_create_features.py --animal XXX --disk output_directory --njobs 7
+python $SCRIPT_DIR/parallel_create_features.py --animal XXX --disk output_directory --njobs 7
 ```
 ```
 optional arguments:
@@ -154,7 +160,7 @@ optional arguments:
 In this step, 30 previously trained models are used to calculate a prediction score for features calculated in step 4.  The mean and standard deviation of the 30 detectors are then used to make a decision if a candidate is a sure or unsure detection.
 
 ```bash
-python $PROJECT_DIR/scripts/detect_cell_for_one_brain.py --animal XXX --disk output_directory --round 1
+python $SCRIPT_DIR/detect_cell_for_one_brain.py --animal XXX --disk output_directory --round 1
 ```
 ```
 optional arguments:
