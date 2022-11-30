@@ -1,6 +1,7 @@
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../../'))
+sys.path.append(os.environ['PROJECT_DIR'])
+# sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../../'))
 from cell_extractor.CellDetector import detect_cell
 import argparse
 
@@ -16,10 +17,6 @@ def run_from_terminal():
     round = args.round
     detect_cell(braini,disk = disk,round=round)
 
-def run_as_script():
-    detect_cell('DK79',disk = '/net/birdstore/Active_Atlas_Data',round=3,segmentation_threshold=2000)
-
 if __name__ =='__main__':
-    # run_from_terminal()
-    run_as_script()
+    run_from_terminal()
    
