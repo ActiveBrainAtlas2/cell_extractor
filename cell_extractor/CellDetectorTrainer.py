@@ -10,14 +10,13 @@ import numpy as np
 import xgboost as xgb
 import matplotlib.pyplot as plt
 import pandas as pd
-from cell_extractor.CellDetectorBase import CellDetectorBase
+from cell_extractor.CellDetectorIO import CellDetectorIO
 print(xgb.__version__)
 from cell_extractor.retraining.lib.logger  import logger
 import pandas as pd
-from cell_extractor.Predictor import GreedyPredictor
-from cell_extractor.Detector import Detector   
+from cell_extractor.Detector import Detector,GreedyPredictor
 
-class CellDetectorTrainer(Detector,CellDetectorBase):
+class CellDetectorTrainer(Detector,CellDetectorIO):
     """class for training detectors"""
     def __init__(self,animal,round =2,segmentation_threshold=2000):
         """specifies detector to train
@@ -29,8 +28,8 @@ class CellDetectorTrainer(Detector,CellDetectorBase):
         :param segmentation_threshold: threshold used for image segmentation, defaults to 2000
         :type segmentation_threshold: int, optional
         """
-        CellDetectorBase.__init__(self,animal,round = round,segmentation_threshold=segmentation_threshold)
-        self.last_round = CellDetectorBase(animal,round = round-1,segmentation_threshold=segmentation_threshold)
+        CellDetectorIO.__init__(self,animal,round = round,segmentation_threshold=segmentation_threshold)
+        self.last_round = CellDetectorIO(animal,round = round-1,segmentation_threshold=segmentation_threshold)
         self.init_parameter()
         self.predictor = GreedyPredictor()
 

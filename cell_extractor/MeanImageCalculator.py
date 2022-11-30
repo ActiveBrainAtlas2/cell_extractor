@@ -2,9 +2,9 @@ import os ,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'..')))
 import numpy as np
 import pickle as pkl
-from cell_extractor.CellDetectorBase import CellDetectorBase
+from cell_extractor.CellDetectorIO import CellDetectorIO
 import os
-class MeanImageCalculator(CellDetectorBase):
+class MeanImageCalculator(CellDetectorIO):
     """class for calculated mean gaussian blurred image for background subtraction"""
     def __init__(self,animal, *args, **kwargs):
         super().__init__(animal, *args, **kwargs)

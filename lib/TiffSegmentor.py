@@ -1,14 +1,14 @@
 import os
 from multiprocessing.pool import Pool
 from lib.utilities_process import workernoshell,get_image_dimension
-from cell_extractor.CellDetectorBase import CellDetectorBase
+from cell_extractor.CellDetectorIO import CellDetectorIO
 from multiprocessing.pool import Pool
 import tqdm
 import shutil
 import numpy as np
 import pandas as pd
 
-class TiffSegmentor(CellDetectorBase):
+class TiffSegmentor(CellDetectorIO):
     def __init__(self, animal,flurescence_image_input,nissel_stain_image_intput, n_workers=10, *args, **kwargs):
         super().__init__(animal, *args, **kwargs)
         self.flurescence_image_input = flurescence_image_input

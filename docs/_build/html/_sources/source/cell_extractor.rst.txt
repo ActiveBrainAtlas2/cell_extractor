@@ -36,10 +36,10 @@ cell\_extractor.CellDetector module
    :undoc-members:
    :show-inheritance:
 
-cell\_extractor.CellDetectorBase module
+cell\_extractor.CellDetectorIO module
 ---------------------------------------
 
-.. automodule:: cell_extractor.CellDetectorBase
+.. automodule:: cell_extractor.CellDetectorIO
    :members:
    :undoc-members:
    :show-inheritance:

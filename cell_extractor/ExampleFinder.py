@@ -5,13 +5,13 @@ import os
 from numpy.linalg import norm
 from time import time
 import glob
-from cell_extractor.CellDetectorBase import CellDetectorBase,parallel_process_all_sections
+from cell_extractor.CellDetectorIO import CellDetectorIO,parallel_process_all_sections
 
-class ExampleFinder(CellDetectorBase):
+class ExampleFinder(CellDetectorIO):
     """class for finding examples (cell candidates) from image tiles
 
-    :param CellDetectorBase: _description_
-    :type CellDetectorBase: _type_
+    :param CellDetectorIO: _description_
+    :type CellDetectorIO: _type_
     """
     def __init__(self,animal,section, *args, **kwargs):
         super().__init__(animal,section, *args, **kwargs)

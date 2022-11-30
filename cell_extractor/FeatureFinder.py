@@ -2,9 +2,9 @@ import numpy as np
 import pickle as pkl
 from cell_extractor import compute_image_features 
 import cv2
-from cell_extractor.CellDetectorBase import CellDetectorBase,parallel_process_all_sections
+from cell_extractor.CellDetectorIO import CellDetectorIO,parallel_process_all_sections
 import os
-class FeatureFinder(CellDetectorBase):
+class FeatureFinder(CellDetectorIO):
     """class to calculate feature vector for each extracted image pair (CH1, CH3)
     """
     def __init__(self,animal,section, *args, **kwargs):

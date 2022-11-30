@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.append(os.path.abspath('./../../../..'))
-from cell_extractor.CellDetectorBase import CellDetectorBase
+from cell_extractor.CellDetectorIO import CellDetectorIO
 from lib.annotation_layer import Cell,random_string
 import numpy as np
 from lib.UrlGenerator import UrlGenerator
@@ -42,7 +42,7 @@ def get_multi_threshold_sure_and_unsure(animal):
     return sure,unsure
 
 def get_single_threshold_sure_and_unsure(animal,threshold,round):
-    detector = CellDetectorBase(animal,round = round,segmentation_threshold=threshold)
+    detector = CellDetectorIO(animal,round = round,segmentation_threshold=threshold)
     detections = detector.load_detections()
     sures = detections[detections.predictions==2]
     unsure = detections[detections.predictions==0]
@@ -59,7 +59,7 @@ def print_single_threshold_sure_and_unsure_count(animal,threshold = 2000,round=2
 
 def generate_QC_link(animal,sample = None,round = 2,threshold = 2000):
     finder = BorderFinder(animal)
-    detector = CellDetectorBase(animal,round = round,segmentation_threshold=threshold)
+    detector = CellDetectorIO(animal,round = round,segmentation_threshold=threshold)
     detections = detector.load_detections()
     sure = detections[detections.predictions==2]
     unsure = detections[detections.predictions==0]

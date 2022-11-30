@@ -3,7 +3,6 @@ import sys
 sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../..'))
 from lib.TiffSegmentor import TiffSegmentor
 import subprocess
-# from cell_extractor.calculate_mean_cell_image import MeanImageCalculator
 from cell_extractor.CellDetector import CellDetector
 import os
 import argparse
