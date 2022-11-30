@@ -1,7 +1,6 @@
 import os
 import sys
 sys.path.append(os.environ['PROJECT_DIR'])
-# sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../..'))
 from cell_extractor.ExampleFinder import create_examples_for_all_sections 
 import argparse
 

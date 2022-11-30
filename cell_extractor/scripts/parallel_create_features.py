@@ -1,9 +1,7 @@
 import os
 import sys
 sys.path.append(os.environ['PROJECT_DIR'])
-# sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../..'))
 from cell_extractor.FeatureFinder import create_features_for_all_sections 
-# from cell_extractor.CellDetectorBase import CellDetectorBase
 import argparse
 
 if __name__ =='__main__':

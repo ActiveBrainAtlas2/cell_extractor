@@ -1,7 +1,6 @@
 import os 
 import sys
 sys.path.append(os.environ['PROJECT_DIR'])
-# sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../..'))
 from lib.TiffSegmentor import TiffSegmentor
 import argparse
 if __name__ =='__main__':

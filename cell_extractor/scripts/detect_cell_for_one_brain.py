@@ -1,10 +1,8 @@
 import os
 import sys
 sys.path.append(os.environ['PROJECT_DIR'])
-# sys.path.append(os.path.abspath(os.path.dirname(__file__)+'/../../'))
 from cell_extractor.CellDetector import detect_cell
 import argparse
-
 
 def run_from_terminal():
     parser = argparse.ArgumentParser()
