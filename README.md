@@ -63,22 +63,28 @@ To get a local copy up and running, follow these simple example steps.
    ```bash
    git clone https://github.com/ActiveBrainAtlas2/cell_extractor.git
    ```
-2. Configure environment variables in `configure_env.sh`
+
+2. Activate the essential environment variables.
+    ```bash
+    source variables_env.sh
+    ```
+3. Set up the virtual environment.
+  
+    a. Configure the path for virtual environment in `configure_env.sh`
     ```bash
     # Directory to create virtual environment
     export venv='CHANGE TO YOUR DIRECTORY' 
     ```
     Note: Your directory should be out of the project directory to avoid uploading them to Github.
 
-3. When the configuration file is set, run the following command to activate the environment variables and the virtual environment. Essential packages listed in `requirements.txt` would be installed meanwhile.
+    b. When the configuration file is set, run the following command to activate the virtual environment. Essential packages listed in `requirements.txt` would be installed meanwhile.
     ```bash
-    source variables_env.sh
     source configure_env.sh
     ```
-You can also set up the virtual environment by your familiar way. Install the essential packages by running the following command:
-```bash
-pip install -r $PROJECT_DIR/requirements.txt
-```
+    You can also set up the virtual environment by your familiar way. Install the essential packages by running the following command:
+    ```bash
+    pip install -r $PROJECT_DIR/requirements.txt
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

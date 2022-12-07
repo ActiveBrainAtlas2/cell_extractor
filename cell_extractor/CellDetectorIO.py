@@ -3,8 +3,8 @@ from glob import glob
 import pickle as pkl
 import pandas as pd
 import numpy as np
-from cell_extractor.Predictor import Predictor
-from cell_extractor.Detector import Detector
+from cell_extractor.DetectorUsage import Predictor
+from cell_extractor.DetectorUsage import Detector
 import concurrent.futures
 
 class CellDetectorIO:
@@ -150,7 +150,9 @@ class CellDetectorIO:
         :return: list of folder names to be processed(each folder contains result from one image section)
         :rtype: list
         """
-        return os.listdir(self.fluorescence_channel_output)
+        # return os.listdir(self.fluorescence_channel_output)
+        return [f for f in os.listdir(self.fluorescence_channel_output) if not f.startswith('.')]
+
     
     def get_sections_with_string(self,search_string):
         """get section folders that contain files with a specfic string pattern
@@ -515,16 +517,16 @@ class CellDetectorIO:
         except IOError as e:
             print(e)
         
-def get_sections_with_annotation_for_animali(animal):
-    base = CellDetectorIO(animal)
+def get_sections_with_annotation_for_animali(animal,**kwargs):
+    base = CellDetectorIO(animal,**kwargs)
     return base.get_sections_with_csv()
 
-def get_sections_without_annotation_for_animali(animal):
-    base = CellDetectorIO(animal)
+def get_sections_without_annotation_for_animali(animal,**kwargs):
+    base = CellDetectorIO(animal,**kwargs)
     return base.get_sections_without_csv()
 
-def get_all_sections_for_animali(animal):
-    base = CellDetectorIO(animal)
+def get_all_sections_for_animali(animal,**kwargs):
+    base = CellDetectorIO(animal,**kwargs)
     return base.get_all_sections()
 
 def list_available_animals(disk = '/net/birdstore/Active_Atlas_Data/',has_example = True,has_feature = True):
@@ -562,7 +564,7 @@ def parallel_process_all_sections(animal,processing_function,*args,njobs = 10,se
     :type sections: _type_, optional
     """
     if sections is None:
-        sections = get_all_sections_for_animali(animal)
+        sections = get_all_sections_for_animali(animal,**kwargs)
     with concurrent.futures.ProcessPoolExecutor(max_workers=njobs) as executor:
         results = []
         for sectioni in sections:

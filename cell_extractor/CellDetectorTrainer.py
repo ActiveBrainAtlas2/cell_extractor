@@ -14,7 +14,7 @@ from cell_extractor.CellDetectorIO import CellDetectorIO
 print(xgb.__version__)
 from cell_extractor.retraining.lib.logger  import logger
 import pandas as pd
-from cell_extractor.Detector import Detector,GreedyPredictor
+from cell_extractor.DetectorUsage import Detector,GreedyPredictor
 
 class CellDetectorTrainer(Detector,CellDetectorIO):
     """class for training detectors"""
