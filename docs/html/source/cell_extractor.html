@@ -1,0 +1,1243 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cell_extractor package &#8212; Marked Cell Detection  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="cell-extractor-package">
+<h1>cell_extractor package<a class="headerlink" href="#cell-extractor-package" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</div>
+<div class="section" id="module-cell_extractor.CellDetector">
+<span id="cell-extractor-celldetector-module"></span><h2>cell_extractor.CellDetector module<a class="headerlink" href="#module-cell_extractor.CellDetector" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.CellDetector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetector.</span></span><span class="sig-name descname"><span class="pre">CellDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.CellDetector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cell_extractor.CellDetectorIO.CellDetectorIO" title="cell_extractor.CellDetectorIO.CellDetectorIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellDetectorIO</span></code></a></p>
+<p>class for detecting cells after example and feature extraction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>CellDetectorIO</strong> (<em>_type_</em>) – base class for file IO</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.CellDetector.calculate_and_save_detection_results">
+<span class="sig-name descname"><span class="pre">calculate_and_save_detection_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.CellDetector.calculate_and_save_detection_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.CellDetector.get_detection_results">
+<span class="sig-name descname"><span class="pre">get_detection_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.CellDetector.get_detection_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the detection results from features of all sections</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>data frame containg detection result predictions==2 is sure,predictions==0 is unsure and predictions==-2 is no detection</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.CellDetector.print_version">
+<span class="sig-name descname"><span class="pre">print_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.CellDetector.print_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetector.</span></span><span class="sig-name descname"><span class="pre">MultiThresholdDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[2000,</span> <span class="pre">2100,</span> <span class="pre">2200,</span> <span class="pre">2300,</span> <span class="pre">2700]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cell_extractor.CellDetector.CellDetector" title="cell_extractor.CellDetector.CellDetector"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellDetector</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AnnotationProximityTool</span></code></p>
+<p>detect cell using multiple segmentation threshold (depricated)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.calculate_and_save_detection_results">
+<span class="sig-name descname"><span class="pre">calculate_and_save_detection_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.calculate_and_save_detection_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.check_cells">
+<span class="sig-name descname"><span class="pre">check_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">determination_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.check_cells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.determine_mixed_detection">
+<span class="sig-name descname"><span class="pre">determine_mixed_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.determine_mixed_detection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.determine_pure_detection">
+<span class="sig-name descname"><span class="pre">determine_pure_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_to_exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sure'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.determine_pure_detection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.get_detections_and_scores_for_all_threshold">
+<span class="sig-name descname"><span class="pre">get_detections_and_scores_for_all_threshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.get_detections_and_scores_for_all_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.get_sures">
+<span class="sig-name descname"><span class="pre">get_sures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.get_sures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.get_unsures">
+<span class="sig-name descname"><span class="pre">get_unsures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.get_unsures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.load_detections">
+<span class="sig-name descname"><span class="pre">load_detections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.load_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>load detection results</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>df containing detection results</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>df</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.MultiThresholdDetector.plot_detector_threshold">
+<span class="sig-name descname"><span class="pre">plot_detector_threshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.MultiThresholdDetector.plot_detector_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.detect_cell">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetector.</span></span><span class="sig-name descname"><span class="pre">detect_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.detect_cell" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.detect_cell_multithreshold">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetector.</span></span><span class="sig-name descname"><span class="pre">detect_cell_multithreshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[2000,</span> <span class="pre">2100,</span> <span class="pre">2200,</span> <span class="pre">2300,</span> <span class="pre">2700]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.detect_cell_multithreshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetector.string_to_prediction">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetector.</span></span><span class="sig-name descname"><span class="pre">string_to_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetector.string_to_prediction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-cell_extractor.CellDetectorIO">
+<span id="cell-extractor-celldetectorio-module"></span><h2>cell_extractor.CellDetectorIO module<a class="headerlink" href="#module-cell_extractor.CellDetectorIO" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetectorIO.</span></span><span class="sig-name descname"><span class="pre">CellDetectorIO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DK55'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/net/birdstore/Active_Atlas_Data/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segmentation_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.calculate_average_cell_images">
+<span class="sig-name descname"><span class="pre">calculate_average_cell_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.calculate_average_cell_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate average imaged for one channel</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.calulate_average_cell_image">
+<span class="sig-name descname"><span class="pre">calulate_average_cell_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.calulate_average_cell_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate and saves the average cell image for subtraction</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.check_path_exists">
+<span class="sig-name descname"><span class="pre">check_path_exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.check_path_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes the path if it does not exit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.check_tile_information">
+<span class="sig-name descname"><span class="pre">check_tile_information</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.check_tile_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the image size matches information stored previously</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.create_combined_features">
+<span class="sig-name descname"><span class="pre">create_combined_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.create_combined_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>combines features from different sections</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_all_sections">
+<span class="sig-name descname"><span class="pre">get_all_sections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_all_sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>get a list of all sections</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of folder names to be processed(each folder contains result from one image section)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_detections">
+<span class="sig-name descname"><span class="pre">get_animals_with_detections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_detections" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_examples">
+<span class="sig-name descname"><span class="pre">get_animals_with_examples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_examples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_features">
+<span class="sig-name descname"><span class="pre">get_animals_with_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_available_animals">
+<span class="sig-name descname"><span class="pre">get_available_animals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_available_animals" title="Permalink to this definition">¶</a></dt>
+<dd><p>get list of available animals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features">
+<span class="sig-name descname"><span class="pre">get_combined_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>get feature of all sections extracted from one brain</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features_for_detection">
+<span class="sig-name descname"><span class="pre">get_combined_features_for_detection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features_for_detection" title="Permalink to this definition">¶</a></dt>
+<dd><p>get features for all sections without the coordinate of sample location in the section”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features_of_train_sections">
+<span class="sig-name descname"><span class="pre">get_combined_features_of_train_sections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features_of_train_sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>get feature of all examples extracted from one brain without manual annotation (depricated)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_detection_by_category">
+<span class="sig-name descname"><span class="pre">get_detection_by_category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_detection_by_category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get sure unsure and no detections</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dfs</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_example_save_path">
+<span class="sig-name descname"><span class="pre">get_example_save_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_example_save_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate save path for example extraction step result</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_feature_save_path">
+<span class="sig-name descname"><span class="pre">get_feature_save_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_feature_save_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate save path for feature extraction step result</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_manual_annotation_in_tilei">
+<span class="sig-name descname"><span class="pre">get_manual_annotation_in_tilei</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilei</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_manual_annotation_in_tilei" title="Permalink to this definition">¶</a></dt>
+<dd><p>get manual annotation for tilei (depricated)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>tilei</strong> (<em>_type_</em>) – _description_</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_qualifications">
+<span class="sig-name descname"><span class="pre">get_qualifications</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_qualifications" title="Permalink to this definition">¶</a></dt>
+<dd><p>get manual qc result</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_csv">
+<span class="sig-name descname"><span class="pre">get_sections_with_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>get list of sections with a .csv file. the .csv file contains information about manunal label(depricated)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_example">
+<span class="sig-name descname"><span class="pre">get_sections_with_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>get sections that have finished the example extraction step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – image segmentation threshold, defaults to 2000</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of sections that finished example extraction</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_features">
+<span class="sig-name descname"><span class="pre">get_sections_with_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>get sections that have finished feature extraction step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – image segmentation threshold, defaults to 2000</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_string">
+<span class="sig-name descname"><span class="pre">get_sections_with_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>get section folders that contain files with a specfic string pattern</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>search_string</strong> (<em>str</em>) – string pattern</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of section folders</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_csv">
+<span class="sig-name descname"><span class="pre">get_sections_without_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>get sections folders without a .csv file(depricated)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_example">
+<span class="sig-name descname"><span class="pre">get_sections_without_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get sections that have not been through example extraction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – image segmentation threshold, defaults to 2000</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of section folders</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_features">
+<span class="sig-name descname"><span class="pre">get_sections_without_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>get sections that do not have feature extracted</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – image segmentation threshold, defaults to 2000</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_string">
+<span class="sig-name descname"><span class="pre">get_sections_without_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>get section folders that do not have any file matching string pattern</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>search_string</strong> (<em>str</em>) – string pattern</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of section folders</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_and_image_dimensions">
+<span class="sig-name descname"><span class="pre">get_tile_and_image_dimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_and_image_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>parse the image dimension from the tile_information dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_information">
+<span class="sig-name descname"><span class="pre">get_tile_information</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the tile dimension in pixels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dictionary of tile dimensions</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_origin">
+<span class="sig-name descname"><span class="pre">get_tile_origin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tilei</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>gets the origin in pixels of a specfic tile</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tilei</strong> (<em>int</em>) – tile number</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>x and y of tile origin</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.has_detection">
+<span class="sig-name descname"><span class="pre">has_detection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.has_detection" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if detections exist</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.list_available_features">
+<span class="sig-name descname"><span class="pre">list_available_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.list_available_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>list availble features for training</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.list_detectors">
+<span class="sig-name descname"><span class="pre">list_detectors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.list_detectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>list available detectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of detectors available</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.load_all_examples_in_brain">
+<span class="sig-name descname"><span class="pre">load_all_examples_in_brain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.load_all_examples_in_brain" title="Permalink to this definition">¶</a></dt>
+<dd><p>load all examples extracted from one brain</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>label</strong> (<em>int</em><em>, </em><em>optional</em>) – include manual label(depricated), defaults to 1</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.load_average_cell_image">
+<span class="sig-name descname"><span class="pre">load_average_cell_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.load_average_cell_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>load the average cell image for averaging</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.load_detections">
+<span class="sig-name descname"><span class="pre">load_detections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.load_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>load detection results</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>df containing detection results</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>df</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.load_detector">
+<span class="sig-name descname"><span class="pre">load_detector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.load_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>load the detector specified</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.load_examples">
+<span class="sig-name descname"><span class="pre">load_examples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.load_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>load extracted examples for one section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.load_features">
+<span class="sig-name descname"><span class="pre">load_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.load_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>load a specific feature set for training</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.load_models">
+<span class="sig-name descname"><span class="pre">load_models</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.load_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>load xgboost model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.report_detection_status">
+<span class="sig-name descname"><span class="pre">report_detection_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.report_detection_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.save_custom_features">
+<span class="sig-name descname"><span class="pre">save_custom_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.save_custom_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>save custom feature inputs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.save_detector">
+<span class="sig-name descname"><span class="pre">save_detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.save_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>save the detector being trained</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.save_examples">
+<span class="sig-name descname"><span class="pre">save_examples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.save_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>save examples for one section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.save_features">
+<span class="sig-name descname"><span class="pre">save_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.save_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>save features for one section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.save_models">
+<span class="sig-name descname"><span class="pre">save_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.save_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>save xgboost model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.save_tile_information">
+<span class="sig-name descname"><span class="pre">save_tile_information</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.save_tile_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate tile information from the first image in the input directory and stores it for later use</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.CellDetectorIO.set_folder_paths">
+<span class="sig-name descname"><span class="pre">set_folder_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.CellDetectorIO.set_folder_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates all the file path involved in cell detection</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.get_all_sections_for_animali">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetectorIO.</span></span><span class="sig-name descname"><span class="pre">get_all_sections_for_animali</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.get_all_sections_for_animali" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.get_sections_with_annotation_for_animali">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetectorIO.</span></span><span class="sig-name descname"><span class="pre">get_sections_with_annotation_for_animali</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.get_sections_with_annotation_for_animali" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.get_sections_without_annotation_for_animali">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetectorIO.</span></span><span class="sig-name descname"><span class="pre">get_sections_without_annotation_for_animali</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.get_sections_without_annotation_for_animali" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.list_available_animals">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetectorIO.</span></span><span class="sig-name descname"><span class="pre">list_available_animals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">disk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/net/birdstore/Active_Atlas_Data/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_example</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_feature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.list_available_animals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorIO.parallel_process_all_sections">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetectorIO.</span></span><span class="sig-name descname"><span class="pre">parallel_process_all_sections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_function</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">njobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorIO.parallel_process_all_sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>process all sections for one brain in parallel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>animal</strong> (<em>_type_</em>) – animal ID</p></li>
+<li><p><strong>processing_function</strong> (<em>_type_</em>) – function containg detection step</p></li>
+<li><p><strong>njobs</strong> (<em>int</em><em>, </em><em>optional</em>) – n parallel, defaults to 10</p></li>
+<li><p><strong>sections</strong> (<em>_type_</em><em>, </em><em>optional</em>) – list of sections to annalyze, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cell_extractor.CellDetectorTrainer">
+<span id="cell-extractor-celldetectortrainer-module"></span><h2>cell_extractor.CellDetectorTrainer module<a class="headerlink" href="#module-cell_extractor.CellDetectorTrainer" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.CellDetectorTrainer.</span></span><span class="sig-name descname"><span class="pre">CellDetectorTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segmentation_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cell_extractor.DetectionTool.Detector" title="cell_extractor.DetectionTool.Detector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Detector</span></code></a>, <a class="reference internal" href="#cell_extractor.CellDetectorIO.CellDetectorIO" title="cell_extractor.CellDetectorIO.CellDetectorIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellDetectorIO</span></code></a></p>
+<p>class for training detectors</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.gen_scale">
+<span class="sig-name descname"><span class="pre">gen_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.gen_scale" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.get_train_and_test">
+<span class="sig-name descname"><span class="pre">get_train_and_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.get_train_and_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>split train and test set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>frac</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_, defaults to 0.5</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.init_parameter">
+<span class="sig-name descname"><span class="pre">init_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.init_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>initialize training parameter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.load_detector">
+<span class="sig-name descname"><span class="pre">load_detector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.load_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>load the specified detector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.save_detector">
+<span class="sig-name descname"><span class="pre">save_detector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.save_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>save the current detector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.save_predictions">
+<span class="sig-name descname"><span class="pre">save_predictions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.save_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>save prediction results as data frame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>_type_</em>) – _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.test_xgboost">
+<span class="sig-name descname"><span class="pre">test_xgboost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">3,</span> <span class="pre">5]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwrds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.test_xgboost" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate test diagnostic for a range of depth depth and a given max iterations.  Generated plot for comparing comparison through iterations for test and train dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>_type_</em>) – feature data frame</p></li>
+<li><p><strong>depths</strong> (<em>list</em><em>, </em><em>optional</em>) – depth of xgboost trees, defaults to [1,3,5]</p></li>
+<li><p><strong>num_round</strong> (<em>int</em><em>, </em><em>optional</em>) – max number of round to train, defaults to 1000</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.test_xgboost_at_depthi">
+<span class="sig-name descname"><span class="pre">test_xgboost_at_depthi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwrds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.test_xgboost_at_depthi" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate diagnostics for one depths of boosted trees</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>features</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>depth</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_, defaults to 1</p></li>
+<li><p><strong>num_round</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_, defaults to 1000</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.CellDetectorTrainer.CellDetectorTrainer.train_classifier">
+<span class="sig-name descname"><span class="pre">train_classifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwrds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.train_classifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>trains the classifier using given feature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>features</strong> (<em>_type_</em>) – data frame containing detected features used for training</p></li>
+<li><p><strong>niter</strong> (<em>_type_</em>) – number of iteration to train</p></li>
+<li><p><strong>depth</strong> (<em>_type_</em><em>, </em><em>optional</em>) – depths of boosted trees, defaults to None</p></li>
+<li><p><strong>models</strong> (<em>_type_</em><em>, </em><em>optional</em>) – if given, retrain from a previous xgboost model, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of 30 xgboost models</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cell_extractor.DetectionTool">
+<span id="cell-extractor-detectiontool-module"></span><h2>cell_extractor.DetectionTool module<a class="headerlink" href="#module-cell_extractor.DetectionTool" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.BetterPredictor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.DetectionTool.</span></span><span class="sig-name descname"><span class="pre">BetterPredictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.BetterPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>a simpler predictors that sets detections with a mean score with a certain mutiple of std (of all 30 models) from zero as unsures</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.BetterPredictor.decision">
+<span class="sig-name descname"><span class="pre">decision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.BetterPredictor.decision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.DetectionTool.</span></span><span class="sig-name descname"><span class="pre">Detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictor:</span> <span class="pre">~cell_extractor.DetectionTool.GreedyPredictor</span> <span class="pre">=</span> <span class="pre">&lt;cell_extractor.DetectionTool.GreedyPredictor</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>parent class for stroing model and training information for a given detector</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector.calculate_and_set_scores">
+<span class="sig-name descname"><span class="pre">calculate_and_set_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector.calculate_and_set_scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate scores if they do not exist</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector.calculate_scores">
+<span class="sig-name descname"><span class="pre">calculate_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector.calculate_scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate predicted detection scores from features</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>_type_</em>) – features to detect</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>scores, original labels, mean and std of 30 detectors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector.createDM">
+<span class="sig-name descname"><span class="pre">createDM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector.createDM" title="Permalink to this definition">¶</a></dt>
+<dd><p>create training DM</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector.get_prediction">
+<span class="sig-name descname"><span class="pre">get_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector.get_prediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>sort cell into sure/unsure/no detection</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector.plot_decision_scatter">
+<span class="sig-name descname"><span class="pre">plot_decision_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector.plot_decision_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot the decision of sure and unsures</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>features</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>lower_lim</strong> (<em>_type_</em><em>, </em><em>optional</em>) – _description_, defaults to None</p></li>
+<li><p><strong>upper_lim</strong> (<em>_type_</em><em>, </em><em>optional</em>) – _description_, defaults to None</p></li>
+<li><p><strong>title</strong> (<em>_type_</em><em>, </em><em>optional</em>) – _description_, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector.plot_score_scatter">
+<span class="sig-name descname"><span class="pre">plot_score_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'teal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'orangered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector.plot_score_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot the mean and std of detection scores from 30 detector for each example</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>_type_</em>) – data frame with prediction result</p></li>
+<li><p><strong>lower_lim</strong> (<em>_type_</em><em>, </em><em>optional</em>) – x and y upper lims, defaults to None</p></li>
+<li><p><strong>upper_lim</strong> (<em>_type_</em><em>, </em><em>optional</em>) – x and y lower lims, defaults to None</p></li>
+<li><p><strong>alpha1</strong> (<em>float</em><em>, </em><em>optional</em>) – alpha for cells with manual label, defaults to 0.5</p></li>
+<li><p><strong>alpha2</strong> (<em>float</em><em>, </em><em>optional</em>) – transparancy for cells without manual label, defaults to 0.5</p></li>
+<li><p><strong>color1</strong> (<em>str</em><em>, </em><em>optional</em>) – color for cells with manual label, defaults to ‘teal’</p></li>
+<li><p><strong>color2</strong> (<em>str</em><em>, </em><em>optional</em>) – color for cells without manual label, defaults to ‘orangered’</p></li>
+<li><p><strong>size1</strong> (<em>int</em><em>, </em><em>optional</em>) – size for cells with manual label, defaults to 3</p></li>
+<li><p><strong>size2</strong> (<em>int</em><em>, </em><em>optional</em>) – size for cells without manual label, defaults to 3</p></li>
+<li><p><strong>title</strong> (<em>_type_</em><em>, </em><em>optional</em>) – title of the plot, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Detector.set_plot_limits">
+<span class="sig-name descname"><span class="pre">set_plot_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">higher</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Detector.set_plot_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>seting xlim and ylim for diagnostic plots</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lower</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>higher</strong> (<em>_type_</em>) – _description_</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.GreedyPredictor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.DetectionTool.</span></span><span class="sig-name descname"><span class="pre">GreedyPredictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boundary_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[[0,</span> <span class="pre">3],</span> <span class="pre">[3,</span> <span class="pre">4.5],</span> <span class="pre">[1,</span> <span class="pre">6],</span> <span class="pre">[-3,</span> <span class="pre">4],</span> <span class="pre">[-10,</span> <span class="pre">7],</span> <span class="pre">[10,</span> <span class="pre">7]]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.GreedyPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>a predictor that defines a dimond region of unsures using custom boundary points</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.GreedyPredictor.aboveline">
+<span class="sig-name descname"><span class="pre">aboveline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.GreedyPredictor.aboveline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.GreedyPredictor.decision">
+<span class="sig-name descname"><span class="pre">decision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.GreedyPredictor.decision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.GreedyPredictor.plotline">
+<span class="sig-name descname"><span class="pre">plotline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.GreedyPredictor.plotline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.GreedyPredictor.points2line">
+<span class="sig-name descname"><span class="pre">points2line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.GreedyPredictor.points2line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.GreedyPredictor.print_boundary_points">
+<span class="sig-name descname"><span class="pre">print_boundary_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.GreedyPredictor.print_boundary_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.GreedyPredictor.set_boundary_points">
+<span class="sig-name descname"><span class="pre">set_boundary_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boundary_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.GreedyPredictor.set_boundary_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Predictor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.DetectionTool.</span></span><span class="sig-name descname"><span class="pre">Predictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>class used to assign cells to sure/unsure/no detection</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.DetectionTool.Predictor.decision">
+<span class="sig-name descname"><span class="pre">decision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.DetectionTool.Predictor.decision" title="Permalink to this definition">¶</a></dt>
+<dd><p>decision function, 2=sure,0=unsure,-2=no detection</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cell_extractor.ExampleFinder">
+<span id="cell-extractor-examplefinder-module"></span><h2>cell_extractor.ExampleFinder module<a class="headerlink" href="#module-cell_extractor.ExampleFinder" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.ExampleFinder.</span></span><span class="sig-name descname"><span class="pre">ExampleFinder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cell_extractor.CellDetectorIO.CellDetectorIO" title="cell_extractor.CellDetectorIO.CellDetectorIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellDetectorIO</span></code></a></p>
+<p>class for finding examples (cell candidates) from image tiles</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>CellDetectorIO</strong> (<em>_type_</em>) – _description_</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.find_cloest_connected_segment_to_manual_label">
+<span class="sig-name descname"><span class="pre">find_cloest_connected_segment_to_manual_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manual_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.find_cloest_connected_segment_to_manual_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>pairing manual label to automatic detection (depricated)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.find_connected_segments">
+<span class="sig-name descname"><span class="pre">find_connected_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.find_connected_segments" title="Permalink to this definition">¶</a></dt>
+<dd><p>find connected segments (cell candidates)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.find_examples">
+<span class="sig-name descname"><span class="pre">find_examples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.find_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>finding example for one tile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.find_segments_corresponding_to_manual_labels">
+<span class="sig-name descname"><span class="pre">find_segments_corresponding_to_manual_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.find_segments_corresponding_to_manual_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>assign manual labels to tile (depricated)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tile</strong> (<em>_type_</em>) – _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.get_examples">
+<span class="sig-name descname"><span class="pre">get_examples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.get_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>creates examples for one tile</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tile</strong> (<em>_type_</em>) – tile id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>examples</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.get_tilei">
+<span class="sig-name descname"><span class="pre">get_tilei</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tilei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fluorescence'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.get_tilei" title="Permalink to this definition">¶</a></dt>
+<dd><p>load image of tilei</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.load_and_preprocess_image">
+<span class="sig-name descname"><span class="pre">load_and_preprocess_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.load_and_preprocess_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>load and preprocess image for tilei</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.load_manual_annotation">
+<span class="sig-name descname"><span class="pre">load_manual_annotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.load_manual_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>loads manual annotation (depricated)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.load_manual_labels_in_tilei">
+<span class="sig-name descname"><span class="pre">load_manual_labels_in_tilei</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tilei</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.load_manual_labels_in_tilei" title="Permalink to this definition">¶</a></dt>
+<dd><p>load all manual labels that lies in the tile (depricated)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.ExampleFinder.subtract_blurred_image">
+<span class="sig-name descname"><span class="pre">subtract_blurred_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.ExampleFinder.subtract_blurred_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>average the image by subtracting gaussian blurred mean</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.create_examples_for_all_sections">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.ExampleFinder.</span></span><span class="sig-name descname"><span class="pre">create_examples_for_all_sections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">njobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.create_examples_for_all_sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract examples for all sections in parallel</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.ExampleFinder.create_examples_for_one_section">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.ExampleFinder.</span></span><span class="sig-name descname"><span class="pre">create_examples_for_one_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.ExampleFinder.create_examples_for_one_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract example for one section</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cell_extractor.FeatureFinder">
+<span id="cell-extractor-featurefinder-module"></span><h2>cell_extractor.FeatureFinder module<a class="headerlink" href="#module-cell_extractor.FeatureFinder" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.FeatureFinder.FeatureFinder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.FeatureFinder.</span></span><span class="sig-name descname"><span class="pre">FeatureFinder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.FeatureFinder.FeatureFinder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cell_extractor.CellDetectorIO.CellDetectorIO" title="cell_extractor.CellDetectorIO.CellDetectorIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellDetectorIO</span></code></a></p>
+<p>class to calculate feature vector for each extracted image pair (CH1, CH3)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.FeatureFinder.FeatureFinder.calculate_correlation_and_energy">
+<span class="sig-name descname"><span class="pre">calculate_correlation_and_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">example</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.FeatureFinder.FeatureFinder.calculate_correlation_and_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate correlation and energy for channel 1 and 3</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.FeatureFinder.FeatureFinder.calculate_features">
+<span class="sig-name descname"><span class="pre">calculate_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.FeatureFinder.FeatureFinder.calculate_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Master function, calls methods to calculate the features that are then stored in self.features</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.FeatureFinder.FeatureFinder.copy_information_from_examples">
+<span class="sig-name descname"><span class="pre">copy_information_from_examples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">example</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.FeatureFinder.FeatureFinder.copy_information_from_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>copy information already calculated in example extraction step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>example</strong> (<em>_type_</em>) – examples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.FeatureFinder.FeatureFinder.features_using_center_connectd_components">
+<span class="sig-name descname"><span class="pre">features_using_center_connectd_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">example</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.FeatureFinder.FeatureFinder.features_using_center_connectd_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculated designed features for detection input</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.FeatureFinder.create_features_for_all_sections">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.FeatureFinder.</span></span><span class="sig-name descname"><span class="pre">create_features_for_all_sections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">njobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.FeatureFinder.create_features_for_all_sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract feature for all sections in parallel</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.FeatureFinder.create_features_for_one_section">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.FeatureFinder.</span></span><span class="sig-name descname"><span class="pre">create_features_for_one_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.FeatureFinder.create_features_for_one_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract feature for one section</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cell_extractor.MeanImageCalculator">
+<span id="cell-extractor-meanimagecalculator-module"></span><h2>cell_extractor.MeanImageCalculator module<a class="headerlink" href="#module-cell_extractor.MeanImageCalculator" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cell_extractor.MeanImageCalculator.MeanImageCalculator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cell_extractor.MeanImageCalculator.</span></span><span class="sig-name descname"><span class="pre">MeanImageCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.MeanImageCalculator.MeanImageCalculator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cell_extractor.CellDetectorIO.CellDetectorIO" title="cell_extractor.CellDetectorIO.CellDetectorIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellDetectorIO</span></code></a></p>
+<p>class for calculated mean gaussian blurred image for background subtraction</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.MeanImageCalculator.MeanImageCalculator.calculate_average_cell_images">
+<span class="sig-name descname"><span class="pre">calculate_average_cell_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.MeanImageCalculator.MeanImageCalculator.calculate_average_cell_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate average imaged for one channel</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cell_extractor.MeanImageCalculator.MeanImageCalculator.calulate_average_cell_image">
+<span class="sig-name descname"><span class="pre">calulate_average_cell_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.MeanImageCalculator.MeanImageCalculator.calulate_average_cell_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate and saves the average cell image for subtraction</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cell_extractor.compute_image_features">
+<span id="cell-extractor-compute-image-features-module"></span><h2>cell_extractor.compute_image_features module<a class="headerlink" href="#module-cell_extractor.compute_image_features" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.compute_image_features.calc_img_features">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.compute_image_features.</span></span><span class="sig-name descname"><span class="pre">calc_img_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.compute_image_features.calc_img_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>img = input image
+mean_s: the untrimmed mean image
+Computes the agreement between the gradient of the mean image and the gradient of this example
+mean_x,mean_y = the gradients of the particular image
+img_x,img_y = the gradients of the image</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.compute_image_features.equalize_array_size_by_trimming">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.compute_image_features.</span></span><span class="sig-name descname"><span class="pre">equalize_array_size_by_trimming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.compute_image_features.equalize_array_size_by_trimming" title="Permalink to this definition">¶</a></dt>
+<dd><p>makes array1 and array 2 the same size</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.compute_image_features.sobel">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.compute_image_features.</span></span><span class="sig-name descname"><span class="pre">sobel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.compute_image_features.sobel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the normalized sobel edge magnitudes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cell_extractor.compute_image_features.trim_array_to_size">
+<span class="sig-prename descclassname"><span class="pre">cell_extractor.compute_image_features.</span></span><span class="sig-name descname"><span class="pre">trim_array_to_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cell_extractor.compute_image_features.trim_array_to_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>trims an array to size</p>
+</dd></dl>
+
+</div>
+<div class="section" id="cell-extractor-utils-module">
+<h2>cell_extractor.utils module<a class="headerlink" href="#cell-extractor-utils-module" title="Permalink to this heading">¶</a></h2>
+</div>
+<div class="section" id="module-cell_extractor">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cell_extractor" title="Permalink to this heading">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Marked Cell Detection</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Zhongkai Wu, Kui Qian, Yoav Freund.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/source/cell_extractor.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
