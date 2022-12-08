@@ -3,8 +3,8 @@ from glob import glob
 import pickle as pkl
 import pandas as pd
 import numpy as np
-from cell_extractor.DetectorUsage import Predictor
-from cell_extractor.DetectorUsage import Detector
+from cell_extractor.DetectionTool import Predictor
+from cell_extractor.DetectionTool import Detector
 import concurrent.futures
 
 class CellDetectorIO:
