@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
- 
+
 <h3 align="center">Marked Cell Detection</h3>
 
   <p align="center">
@@ -34,11 +34,12 @@
 
 ## About The Project
 
-This project is meant to develop a detector for marked cells in brain images based on cell shape features. The functions are:
+This project uses machine learning to distinguish between "marked" and "unmarked" brain cells. It uses an ensemble of boosted trees, generated using **XGBoost**. The ensemble is used to distinguish between cells for which there is a confident prediction of being "marked", those that are confidently "unmarked" (or negative) and those on which the classification is "unsure". 
+
 * Extracting cells from brain images
 * Evaluating cells to be negative, sure positive and unsure positive
-* Testing detection accuracy via a simplified annotation process
-* Estimating cell density in brain regions
+* Manually verifying  detection accuracy using a rudimentary  annotation tool.
+* Estimating cell density in brain regions  YF: ???
 
 Developed with Python 3.10.
 
@@ -50,12 +51,20 @@ To get a local copy up and running, follow these simple example steps.
 
 ### Prerequisites
 
-1. Please ensure you have any tool to create virtual environments. Our environment setting uses `virtualenv`.
-* virtualenv
+1. Please ensure you have any tool to create virtual environments. Our environment setting uses `virtualenv`.  
+* Installing virtualenv
+	* On Linux 
   ```bash
-  sudo apt install virtualenv
+  sudo apt install virtualen
   ```
-2. `ImageMagick` is required to convert images. The installment guide is [here](https://imagemagick.org/script/download.php).
+  * On Mac-OS: 
+  ```bash
+  pip(3) install pipx
+  pipx install virtualenv
+  ```
+  
+
+2. ImageMagick` is required to convert images. The installment guide is [here](https://imagemagick.org/script/download.php).
 
 ### Installation
 
@@ -73,9 +82,9 @@ To get a local copy up and running, follow these simple example steps.
     a. Configure the path for virtual environment in `configure_env.sh`
     ```bash
     # Directory to create virtual environment
-    export venv='CHANGE TO YOUR DIRECTORY' 
+    export venv='Cell extraction working Directory' 
     ```
-    Note: Your directory should be out of the project directory to avoid uploading them to Github.
+    Note: The working directory should be out of the project directory to avoid uploading them to Github.
 
     b. When the configuration file is set, run the following command to activate the virtual environment. Essential packages listed in `requirements.txt` would be installed meanwhile.
     ```bash
