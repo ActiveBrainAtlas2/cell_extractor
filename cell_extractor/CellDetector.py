@@ -3,6 +3,7 @@ import numpy as np
 import xgboost as xgb
 import pandas as pd
 import os
+import pickle
 from cell_extractor.CellDetectorIO import CellDetectorIO
 from cell_extractor.utilities.AnnotationProximityTool import AnnotationProximityTool
 
@@ -162,9 +163,11 @@ def string_to_prediction(string):
     elif string.split('_')[1] == 'null':
         return -2
         
-def detect_cell(animal,round,*args,**kwargs):
+def detect_cell(animal,round,model,*args,**kwargs):
     print(f'detecting {animal}')
     detector = CellDetector(*args,animal = animal,round=round,**kwargs)
+    if model != None:
+        detector.detector.model = pickle.load(open(model,'rb'))
     detector.calculate_and_save_detection_results()
 
 def detect_cell_multithreshold(animal,round,thresholds = [2000,2100,2200,2300,2700]):

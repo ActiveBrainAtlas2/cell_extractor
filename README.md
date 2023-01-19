@@ -79,10 +79,10 @@ To get a local copy up and running, follow these simple example steps.
     ```
 3. Set up the virtual environment.
   
-    a. Configure the path for virtual environment in `configure_env.sh`
+    a. Edit the path for virtual environment in [configure_env.sh](https://github.com/ActiveBrainAtlas2/cell_extractor/blob/main/configure_env.sh)
     ```bash
     # Directory to create virtual environment
-    export venv='Cell extraction working Directory' 
+    export venv=~/Github/venv/ # CHANGE TO YOUR DIRECTORY
     ```
     Note: The working directory should be out of the project directory to avoid uploading them to Github.
 
@@ -103,6 +103,19 @@ Running a marked cell detector involves the following stages:
 
 1. full aligned brain images> 2. tiff image tiles> 3. cell examples> 4. cell features> 5.detection result
 
+### Step 0. Prepare computation environment
+
+Activate the essential environment variables and virtual environment.
+  ```bash
+  source variables_env.sh
+  source configure_env.sh
+  ```
+
+Note: Run the following command to check if libraries are installed correctly.
+  ```bash
+  pip install -r $PROJECT_DIR/requirements.txt
+  ```
+
 ### Step 1. Full aligned images
 
 ​    The full resolution, within stack aligned images are used for the cell detection. Fluorescence images and nissel stain images are processed together in our project.
@@ -115,7 +128,7 @@ There are some example images in [data_for_test](https://github.com/ActiveBrainA
 The full resolution images are too big to work with, therefore we break them down to smaller chunks for processing with the script [generate_tif_tiles.py](https://github.com/ActiveBrainAtlas2/cell_extractor/blob/main/cell_extractor/scripts/generate_tif_tiles.py).
 
 ```bash
-python $SCRIPT_DIR/generate_tif_tiles.py --animal XXX --fluorescence_image data_for_test/fluorescence_image --nissel_stain_image data_for_test/nissel_stain_image --disk output_directory
+python $SCRIPT_DIR/generate_tif_tiles.py --animal XXX --fluorescence_image $PROJECT_DIR/data_for_test/fluorescence_image --nissel_stain_image $PROJECT_DIR/data_for_test/nissel_stain_image --disk output_directory
 ```
 ```
 optional arguments:
@@ -175,7 +188,7 @@ optional arguments:
 In this step, 30 previously trained models are used to calculate a prediction score for features calculated in step 4.  The mean and standard deviation of the 30 detectors are then used to make a decision if a candidate is a sure or unsure detection.
 
 ```bash
-python $SCRIPT_DIR/detect_cell_for_one_brain.py --animal XXX --disk output_directory --round 1
+python $SCRIPT_DIR/detect_cell_for_one_brain.py --animal XXX --disk output_directory --round 1 --model $PROJECT_DIR/data_for_test/model/models_example.pkl
 ```
 ```
 optional arguments:
@@ -183,6 +196,7 @@ optional arguments:
   --animal ANIMAL  Animal ID
   --disk DISK      storage disk
   --round ROUND    model version
+  --model          model file path
 ```
 We are trying to improve the models with new marked cells round by round. The argument 'ROUND' refers to the model version of each round.
 

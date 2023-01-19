@@ -1,19 +1,19 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cell_extractor &#8212; Marked Cell Detection  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cell_extractor &#8212; Marked Cell Detection 1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -33,225 +33,28 @@
           <div class="body" role="main">
             
   <div class="section" id="cell-extractor">
-<h1>cell_extractor<a class="headerlink" href="#cell-extractor" title="Permalink to this heading">¶</a></h1>
+<h1>cell_extractor<a class="headerlink" href="#cell-extractor" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cell_extractor.html">cell_extractor package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.CellDetector">cell_extractor.CellDetector module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.CellDetector"><code class="docutils literal notranslate"><span class="pre">CellDetector</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.CellDetector.calculate_and_save_detection_results"><code class="docutils literal notranslate"><span class="pre">CellDetector.calculate_and_save_detection_results()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.CellDetector.get_detection_results"><code class="docutils literal notranslate"><span class="pre">CellDetector.get_detection_results()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.CellDetector.print_version"><code class="docutils literal notranslate"><span class="pre">CellDetector.print_version()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.calculate_and_save_detection_results"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.calculate_and_save_detection_results()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.check_cells"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.check_cells()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.determine_mixed_detection"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.determine_mixed_detection()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.determine_pure_detection"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.determine_pure_detection()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.get_detections_and_scores_for_all_threshold"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.get_detections_and_scores_for_all_threshold()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.get_sures"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.get_sures()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.get_unsures"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.get_unsures()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.load_detections"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.load_detections()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.MultiThresholdDetector.plot_detector_threshold"><code class="docutils literal notranslate"><span class="pre">MultiThresholdDetector.plot_detector_threshold()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.detect_cell"><code class="docutils literal notranslate"><span class="pre">detect_cell()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.detect_cell_multithreshold"><code class="docutils literal notranslate"><span class="pre">detect_cell_multithreshold()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetector.string_to_prediction"><code class="docutils literal notranslate"><span class="pre">string_to_prediction()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.CellDetectorIO">cell_extractor.CellDetectorIO module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.calculate_average_cell_images"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.calculate_average_cell_images()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.calulate_average_cell_image"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.calulate_average_cell_image()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.check_path_exists"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.check_path_exists()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.check_tile_information"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.check_tile_information()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.create_combined_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.create_combined_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_all_sections"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_all_sections()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_detections"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_animals_with_detections()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_examples"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_animals_with_examples()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_animals_with_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_animals_with_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_available_animals"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_available_animals()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_combined_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features_for_detection"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_combined_features_for_detection()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_combined_features_of_train_sections"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_combined_features_of_train_sections()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_detection_by_category"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_detection_by_category()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_example_save_path"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_example_save_path()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_feature_save_path"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_feature_save_path()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_manual_annotation_in_tilei"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_manual_annotation_in_tilei()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_qualifications"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_qualifications()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_csv"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_with_csv()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_example"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_with_example()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_with_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_with_string"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_with_string()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_csv"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_without_csv()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_example"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_without_example()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_without_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_sections_without_string"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_sections_without_string()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_and_image_dimensions"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_tile_and_image_dimensions()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_information"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_tile_information()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.get_tile_origin"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.get_tile_origin()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.has_detection"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.has_detection()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.list_available_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.list_available_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.list_detectors"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.list_detectors()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.load_all_examples_in_brain"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.load_all_examples_in_brain()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.load_average_cell_image"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.load_average_cell_image()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.load_detections"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.load_detections()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.load_detector"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.load_detector()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.load_examples"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.load_examples()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.load_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.load_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.load_models"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.load_models()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.report_detection_status"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.report_detection_status()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.save_custom_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.save_custom_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.save_detector"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.save_detector()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.save_examples"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.save_examples()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.save_features"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.save_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.save_models"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.save_models()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.save_tile_information"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.save_tile_information()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.CellDetectorIO.set_folder_paths"><code class="docutils literal notranslate"><span class="pre">CellDetectorIO.set_folder_paths()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.get_all_sections_for_animali"><code class="docutils literal notranslate"><span class="pre">get_all_sections_for_animali()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.get_sections_with_annotation_for_animali"><code class="docutils literal notranslate"><span class="pre">get_sections_with_annotation_for_animali()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.get_sections_without_annotation_for_animali"><code class="docutils literal notranslate"><span class="pre">get_sections_without_annotation_for_animali()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.list_available_animals"><code class="docutils literal notranslate"><span class="pre">list_available_animals()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorIO.parallel_process_all_sections"><code class="docutils literal notranslate"><span class="pre">parallel_process_all_sections()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.CellDetectorTrainer">cell_extractor.CellDetectorTrainer module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.gen_scale"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.gen_scale()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.get_train_and_test"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.get_train_and_test()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.init_parameter"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.init_parameter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.load_detector"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.load_detector()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.save_detector"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.save_detector()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.save_predictions"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.save_predictions()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.test_xgboost"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.test_xgboost()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.test_xgboost_at_depthi"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.test_xgboost_at_depthi()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.CellDetectorTrainer.CellDetectorTrainer.train_classifier"><code class="docutils literal notranslate"><span class="pre">CellDetectorTrainer.train_classifier()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.DetectionTool">cell_extractor.DetectionTool module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.BetterPredictor"><code class="docutils literal notranslate"><span class="pre">BetterPredictor</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.BetterPredictor.decision"><code class="docutils literal notranslate"><span class="pre">BetterPredictor.decision()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector"><code class="docutils literal notranslate"><span class="pre">Detector</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector.calculate_and_set_scores"><code class="docutils literal notranslate"><span class="pre">Detector.calculate_and_set_scores()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector.calculate_scores"><code class="docutils literal notranslate"><span class="pre">Detector.calculate_scores()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector.createDM"><code class="docutils literal notranslate"><span class="pre">Detector.createDM()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector.get_prediction"><code class="docutils literal notranslate"><span class="pre">Detector.get_prediction()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector.plot_decision_scatter"><code class="docutils literal notranslate"><span class="pre">Detector.plot_decision_scatter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector.plot_score_scatter"><code class="docutils literal notranslate"><span class="pre">Detector.plot_score_scatter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Detector.set_plot_limits"><code class="docutils literal notranslate"><span class="pre">Detector.set_plot_limits()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.GreedyPredictor"><code class="docutils literal notranslate"><span class="pre">GreedyPredictor</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.GreedyPredictor.aboveline"><code class="docutils literal notranslate"><span class="pre">GreedyPredictor.aboveline()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.GreedyPredictor.decision"><code class="docutils literal notranslate"><span class="pre">GreedyPredictor.decision()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.GreedyPredictor.plotline"><code class="docutils literal notranslate"><span class="pre">GreedyPredictor.plotline()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.GreedyPredictor.points2line"><code class="docutils literal notranslate"><span class="pre">GreedyPredictor.points2line()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.GreedyPredictor.print_boundary_points"><code class="docutils literal notranslate"><span class="pre">GreedyPredictor.print_boundary_points()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.GreedyPredictor.set_boundary_points"><code class="docutils literal notranslate"><span class="pre">GreedyPredictor.set_boundary_points()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Predictor"><code class="docutils literal notranslate"><span class="pre">Predictor</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.DetectionTool.Predictor.decision"><code class="docutils literal notranslate"><span class="pre">Predictor.decision()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.ExampleFinder">cell_extractor.ExampleFinder module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder"><code class="docutils literal notranslate"><span class="pre">ExampleFinder</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.find_cloest_connected_segment_to_manual_label"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.find_cloest_connected_segment_to_manual_label()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.find_connected_segments"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.find_connected_segments()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.find_examples"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.find_examples()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.find_segments_corresponding_to_manual_labels"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.find_segments_corresponding_to_manual_labels()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.get_examples"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.get_examples()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.get_tilei"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.get_tilei()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.load_and_preprocess_image"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.load_and_preprocess_image()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.load_manual_annotation"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.load_manual_annotation()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.load_manual_labels_in_tilei"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.load_manual_labels_in_tilei()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.ExampleFinder.subtract_blurred_image"><code class="docutils literal notranslate"><span class="pre">ExampleFinder.subtract_blurred_image()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.create_examples_for_all_sections"><code class="docutils literal notranslate"><span class="pre">create_examples_for_all_sections()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.ExampleFinder.create_examples_for_one_section"><code class="docutils literal notranslate"><span class="pre">create_examples_for_one_section()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.FeatureFinder">cell_extractor.FeatureFinder module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.FeatureFinder.FeatureFinder"><code class="docutils literal notranslate"><span class="pre">FeatureFinder</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.FeatureFinder.FeatureFinder.calculate_correlation_and_energy"><code class="docutils literal notranslate"><span class="pre">FeatureFinder.calculate_correlation_and_energy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.FeatureFinder.FeatureFinder.calculate_features"><code class="docutils literal notranslate"><span class="pre">FeatureFinder.calculate_features()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.FeatureFinder.FeatureFinder.copy_information_from_examples"><code class="docutils literal notranslate"><span class="pre">FeatureFinder.copy_information_from_examples()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.FeatureFinder.FeatureFinder.features_using_center_connectd_components"><code class="docutils literal notranslate"><span class="pre">FeatureFinder.features_using_center_connectd_components()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.FeatureFinder.create_features_for_all_sections"><code class="docutils literal notranslate"><span class="pre">create_features_for_all_sections()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.FeatureFinder.create_features_for_one_section"><code class="docutils literal notranslate"><span class="pre">create_features_for_one_section()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.MeanImageCalculator">cell_extractor.MeanImageCalculator module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.MeanImageCalculator.MeanImageCalculator"><code class="docutils literal notranslate"><span class="pre">MeanImageCalculator</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.MeanImageCalculator.MeanImageCalculator.calculate_average_cell_images"><code class="docutils literal notranslate"><span class="pre">MeanImageCalculator.calculate_average_cell_images()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="cell_extractor.html#cell_extractor.MeanImageCalculator.MeanImageCalculator.calulate_average_cell_image"><code class="docutils literal notranslate"><span class="pre">MeanImageCalculator.calulate_average_cell_image()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.compute_image_features">cell_extractor.compute_image_features module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.compute_image_features.calc_img_features"><code class="docutils literal notranslate"><span class="pre">calc_img_features()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.compute_image_features.equalize_array_size_by_trimming"><code class="docutils literal notranslate"><span class="pre">equalize_array_size_by_trimming()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.compute_image_features.sobel"><code class="docutils literal notranslate"><span class="pre">sobel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="cell_extractor.html#cell_extractor.compute_image_features.trim_array_to_size"><code class="docutils literal notranslate"><span class="pre">trim_array_to_size()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-celldetector-module">cell_extractor.CellDetector module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-celldetectorio-module">cell_extractor.CellDetectorIO module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-celldetectortrainer-module">cell_extractor.CellDetectorTrainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-detectiontool-module">cell_extractor.DetectionTool module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-examplefinder-module">cell_extractor.ExampleFinder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-featurefinder-module">cell_extractor.FeatureFinder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-meanimagecalculator-module">cell_extractor.MeanImageCalculator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor.compute_image_features">cell_extractor.compute_image_features module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#cell-extractor-utils-module">cell_extractor.utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cell_extractor.html#module-cell_extractor">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lib.html">lib package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lib.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lib.html#module-lib.FileLocationManager">lib.FileLocationManager module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager"><code class="docutils literal notranslate"><span class="pre">FileLocationManager</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_elastix"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_elastix()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_full"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_full()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_full_aligned"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_full_aligned()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_full_cleaned"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_full_cleaned()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_histogram"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_histogram()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_logdir"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_logdir()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_neuroglancer"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_neuroglancer()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_normalized"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_normalized()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_thumbnail"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_thumbnail()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_thumbnail_aligned"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_thumbnail_aligned()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.FileLocationManager.FileLocationManager.get_thumbnail_cleaned"><code class="docutils literal notranslate"><span class="pre">FileLocationManager.get_thumbnail_cleaned()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="lib.html#module-lib.TiffSegmentor">lib.TiffSegmentor module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.check_files"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.check_files()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.create_output_folders"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.create_output_folders()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.generate_tiff_segments"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.generate_tiff_segments()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.generate_tile_information"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.generate_tile_information()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.generate_tiles"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.generate_tiles()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.get_path_to_output_folders"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.get_path_to_output_folders()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.set_image_width_and_height"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.set_image_width_and_height()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lib.html#lib.TiffSegmentor.TiffSegmentor.set_tile_origins"><code class="docutils literal notranslate"><span class="pre">TiffSegmentor.set_tile_origins()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="lib.html#module-lib.utilities_process">lib.utilities_process module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lib.html#lib.utilities_process.get_image_dimension"><code class="docutils literal notranslate"><span class="pre">get_image_dimension()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="lib.html#lib.utilities_process.workernoshell"><code class="docutils literal notranslate"><span class="pre">workernoshell()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="lib.html#lib-filelocationmanager-module">lib.FileLocationManager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.html#lib-tiffsegmentor-module">lib.TiffSegmentor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib.html#lib-utilities-process-module">lib.utilities_process module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lib.html#module-lib">Module contents</a></li>
 </ul>
 </li>
@@ -285,15 +88,17 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
 
 
@@ -310,7 +115,7 @@
       &copy;2022, Zhongkai Wu, Kui Qian, Yoav Freund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
